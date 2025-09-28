@@ -1,19 +1,19 @@
 #include <iostream>
 
-int soma(int X, int Y) {
-    if(Y == 0){
+int multiplicacao(int X, int Y) {
+    if(X == 0 || Y == 0) return 0;
+    if(Y = 0){
         return X;
-    } else if(Y > 0){
-        return soma(X + 1, Y - 1);
- } else {return soma(X - 1, Y + 1);}
+    }else if(Y > 0){
+        return X + multiplicacao(X, Y -1);
+    }else {return - multiplicacao(X, -Y);}
 }
 
 int main () {
-    soma(3, 4);
-    soma(0, 5);
-    soma(5, 0);
-    soma(3, 6);
-    soma(7, 3);
+    multiplicacao(3, 4);
+    multiplicacao(0, 5);
+    multiplicacao(5, 0);
+    multiplicacao(3, 2);
 
 
     return 0;
