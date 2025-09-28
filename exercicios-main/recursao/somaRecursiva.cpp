@@ -18,8 +18,13 @@
  * @return O resultado da soma de X e Y.
  */
 int soma(int X, int Y) {
-    return -1;
+    if(Y == 0){
+        return X;
+    } else if(Y > 0){
+        return soma(X + 1, Y - 1);
+ } else {return soma(X - 1, Y + 1);}
 }
+
 
 TEST_CASE("Somar Dois Números Inteiros - Testes") {
     CHECK(soma(3, 4) == 7);
