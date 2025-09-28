@@ -14,7 +14,31 @@
  * @return O tamanho da maior sequência crescente contínua.
  */
 int maiorSequenciaCrescente(const int numeros[], int tamanho) {
-    return -1;
+        if (tamanho == 0 || numeros == nullptr) {
+
+            return 0;
+        }
+
+        int maior = 1; 
+        int atual = 1;
+
+        for(int i = 1; i < tamanho; i++){
+            if (numeros[i] > numeros[i - 1]){
+                atual++;
+            }
+            else {
+                if (atual > maior){
+                    maior = atual;
+                }
+
+                atual = 1;
+            }
+
+        }
+
+        if(atual > maior) maior = atual;
+
+    return maior;
 }
 
 TEST_CASE("Maior Sequência Crescente - Teste com elementos mistos") {
@@ -33,6 +57,6 @@ TEST_CASE("Maior Sequência Crescente - Teste com elementos decrescentes") {
 }
 
 TEST_CASE("Maior Sequência Crescente - Teste com array vazio") {
-    int numeros[] = {};
+    int* numeros = nullptr;
     CHECK(maiorSequenciaCrescente(numeros, 0) == 0);
 }

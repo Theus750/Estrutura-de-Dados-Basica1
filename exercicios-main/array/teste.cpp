@@ -1,33 +1,36 @@
 #include <iostream>
 using namespace std;
-int contarElementosComuns(const int array1[], int tamanho1, const int array2[], int tamanho2) {
-    if (tamanho1 == 0 || tamanho2 == 0 || array1 == nullptr|| array2  == nullptr){
-        return 0;
-     }
-    
-    
-    int contador = 0;
-    
-    for(int i = 0; i < tamanho1; i++){
-        for (int j = 0; j < tamanho2; j++){
-            if(array1[i] == array2[j]){
-                contador++;
-                break;
+int maiorSequenciaCrescente(const int numeros[], int tamanho) {
+        if (tamanho == 0 || numeros == nullptr) {
+
+            return 0;
+        }
+
+        int maior = 1; 
+        int atual = 1;
+
+        for(int i = 1; i < tamanho; i++){
+            if (numeros[i] > numeros[i - 1]){
+                atual++;
+            }
+            else {
+                if (atual > maior){
+                    maior = atual;
+                }
+
+                atual = 1;
             }
 
         }
 
+        if(atual > maior) maior = atual;
 
-    }
-
-    cout << contador;
-    return contador;
+    return maior;
 }
 
 main(){
-    int array1[] = {1, 2, 3, 4};
-    int array2[] = {3, 4, 5, 6};
-    contarElementosComuns(array1, 4, array2, 4);
+    int numeros[] = {1, 2, 2, 3, 4, 1, 2, 3};
+    maiorSequenciaCrescente(numeros, 8) == 3;
 
     return 0;
 }
