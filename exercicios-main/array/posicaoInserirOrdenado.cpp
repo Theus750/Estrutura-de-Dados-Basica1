@@ -15,7 +15,18 @@
  * @return A posição onde o elemento deveria estar.
  */
 int posicaoInserirOrdenado(const int numeros[], int tamanho, int elemento) {
-    return -1;
+    if(numeros == nullptr || tamanho == 0){
+        return 0;
+    }
+
+    for(int i = 0; i < tamanho; i++){
+        if (numeros[i] > elemento){
+            return i;
+        }
+    }
+
+    
+    return tamanho;
 }
 
 TEST_CASE("Posição Elemento Ordenado - Teste com elemento no meio") {
