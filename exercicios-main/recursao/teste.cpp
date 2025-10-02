@@ -1,17 +1,13 @@
 #include <iostream>
 
-std::pair<int, int> menorMaiorDigito(int N) {
-    if(N < 10) return std::make_pair(N,N);
+bool verificarSequencia(int N) {
+    if (N < 10) return false;
 
-    int digito_atual = N % 10;
-    auto digito_restante = menorMaiorDigito(N/10);
-    int menor = digito_restante.first;
-    int maior = digito_restante.second;
+    int ultimo = N % 10;
+    int penultimo = (N/10) % 10;
 
-    if(digito_atual < menor) menor = digito_atual;
-    if(digito_atual > maior) maior = digito_atual;
-
-    return std::make_pair(menor, maior);
+    if(ultimo == penultimo){return true;}
+    else return verificarSequencia(N/10);
 }
 
 

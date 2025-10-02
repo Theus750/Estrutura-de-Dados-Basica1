@@ -17,7 +17,13 @@
  * @return true se houver dois dígitos iguais consecutivos, false caso contrário.
  */
 bool verificarSequencia(int N) {
-    return false;
+    if (N < 10) return false;
+
+    int ultimo = N % 10;
+    int penultimo = (N/10) % 10;
+
+    if(ultimo == penultimo){return true;}
+    else return verificarSequencia(N/10);
 }
 
 TEST_CASE("Verificar Dígitos Iguais Consecutivos - Testes") {
