@@ -4,8 +4,13 @@
 using namespace std;
 
 int contaDigito(int N, int D)
-{
-    throw "ERRO: Função ainda não foi implementada";
+{ if(N == 0) return 0;
+    int digito = N%10;
+    int resto = contaDigito(N/10, D);
+    if(digito == D) return 1 + resto;
+    else return resto; 
+
+    
 }
 
 int main(void)
