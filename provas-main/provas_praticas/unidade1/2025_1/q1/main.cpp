@@ -3,9 +3,16 @@
 
 using namespace std;
 
-int menorDigito(int N)
-{
-   return -1;
+int menorDigito(int N){ 
+    if(N < 10) return N;
+
+    int digito = N %10;
+    int resto = menorDigito(N/10);
+
+    if(resto < digito){
+        return resto;
+    }else return digito;
+   
 }
 
 TEST_CASE("Questão 1 - Testes da função menorDigito") 
