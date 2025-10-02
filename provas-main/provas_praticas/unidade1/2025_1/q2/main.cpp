@@ -5,9 +5,39 @@
 
 using namespace std;
 
-void mergeSort(int arr[], int esquerda, int direita) 
-{
-    throw "ERRO: Função ainda não foi implementada";
+void merge(int arr[], int inicio1, int inicio2, int fim2){
+    int fim1 = inicio2-1, i = inicio1, j = inicio2, k = 0;
+    int * tmp = new int[fim2 - inicio1 +1];
+    while(i <= fim1 && j <= fim2){
+        if(arr[i] >= arr[j]){
+            tmp[k] = arr[i];
+            i++;
+        }else tmp[k] = arr[j], j++;
+
+        k++;
+    }
+
+    while(i <= fim1) tmp[k] = arr[i], i = i+1, k =k+1;
+    while(j <= fim2) tmp[k] = arr[j], j = j+1, k =k+1;
+
+    for(int x = 0, i = inicio1;  i <= fim2; x++, i++){
+        arr[i] = tmp[x];
+
+    }
+
+    delete [] tmp;
+}
+
+
+
+
+void mergeSort(int arr[], int esquerda, int direita) {
+    if(esquerda >= direita) return;
+    int meio = (esquerda + direita)/2;
+    mergeSort(arr, esquerda, meio);
+    mergeSort(arr, meio + 1, direita);
+    merge(arr, esquerda, meio+1, direita);
+    
 }
 
 /**
