@@ -9,7 +9,13 @@
  * @return Um inteiro com a quantidade de dígitos ímpares.
  */
 int contarDigitosImpares(int N) {
-    return -1;
+    if(N == 0)return 0;
+
+    int digito = N%10;
+    int resto = contarDigitosImpares(N/10);
+    if(digito % 2 != 0){
+        return 1 + resto;
+    }else return resto;
 }
 
 TEST_CASE("Contar Dígitos Pares e Ímpares - Testes") {
