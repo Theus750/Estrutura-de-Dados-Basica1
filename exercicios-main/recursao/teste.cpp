@@ -1,14 +1,17 @@
 #include <iostream>
 
-std::pair<int, int> somaProdutorioDigitos(int N) {
-    if(N == 0)  return std::make_pair(0, 0);
+std::pair<int, int> menorMaiorDigito(int N) {
     if(N < 10) return std::make_pair(N,N);
+
     int digito_atual = N % 10;
-    auto digitos_restantes = somaProdutorioDigitos(N /10);
-    int soma = digito_atual + digitos_restantes.first;
-    int produto = digito_atual * digitos_restantes.second;
-    
-    return std::make_pair(soma, produto);
+    auto digito_restante = menorMaiorDigito(N/10);
+    int menor = digito_restante.first;
+    int maior = digito_restante.second;
+
+    if(digito_atual < menor) menor = digito_atual;
+    if(digito_atual > maior) maior = digito_atual;
+
+    return std::make_pair(menor, maior);
 }
 
 

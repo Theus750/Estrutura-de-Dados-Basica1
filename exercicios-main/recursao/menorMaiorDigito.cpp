@@ -18,7 +18,17 @@
  * @return Um par com o menor dígito (primeiro) e o maior dígito (segundo).
  */
 std::pair<int, int> menorMaiorDigito(int N) {
-    return std::make_pair(-1, -1);
+    if(N < 10) return std::make_pair(N,N);
+
+    int digito_atual = N % 10;
+    auto digito_restante = menorMaiorDigito(N/10);
+    int menor = digito_restante.first;
+    int maior = digito_restante.second;
+
+    if(digito_atual < menor) menor = digito_atual;
+    if(digito_atual > maior) maior = digito_atual;
+
+    return std::make_pair(menor, maior);
 }
 
 TEST_CASE("Menor e Maior Dígito - Testes") {
