@@ -18,7 +18,14 @@
  * @return Um par com o somatório e o produtório dos dígitos de N.
  */
 std::pair<int, int> somaProdutorioDigitos(int N) {
-    return std::make_pair(-1, -1);
+    if(N == 0)  return std::make_pair(0, 0);
+    if(N < 10) return std::make_pair(N,N);
+    int digito_atual = N % 10;
+    auto digitos_restantes = somaProdutorioDigitos(N /10);
+    int soma = digito_atual + digitos_restantes.first;
+    int produto = digito_atual * digitos_restantes.second;
+    
+    return std::make_pair(soma, produto);
 }
 
 TEST_CASE("Soma e Produtório dos Dígitos - Testes") {

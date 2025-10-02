@@ -18,7 +18,20 @@
  * @return Um par com a quantidade de dígitos pares e ímpares.
  */
 std::pair<int, int> contarDigitosParesImpares(int N) {
-    return std::make_pair(-1, -1);
+    if(N == 0){
+    return std::make_pair(1, 0);}
+
+    if(N / 10 == 0){
+        if (N % 2 == 0) return std::make_pair(1, 0);
+        else return std::make_pair(0, 1);
+    }
+    auto resultado = contarDigitosParesImpares(N / 10);
+    int digito = N % 10;
+    if (digito % 2 == 0){
+        resultado.first++;
+    }else resultado.second++;
+
+    return resultado;
 }
 
 TEST_CASE("Contar Dígitos Pares e Ímpares - Testes") {
