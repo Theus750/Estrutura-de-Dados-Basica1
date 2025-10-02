@@ -19,9 +19,42 @@
  * @param alvo O elemento a ser buscado.
  * @return Um par contendo o primeiro e o último índice do elemento encontrado, ou (-1, -1) se não estiver presente.
  */
+
+
 std::pair<int, int> encontrarPrimeiroUltimoIndice(const int arr[], int tamanho, int alvo) {
-    return std::make_pair(-1, -1);
+    int inicio = 0;
+    int fim = tamanho - 1;
+    
+    int primeiro = -1, segundo = -1;
+    while( inicio <= fim){
+        int meio = (inicio+fim)/2;
+        if(alvo == arr[meio]){
+            fim = meio -1;
+            primeiro = meio;   
+    }else if (arr[meio] < alvo){
+        inicio = meio + 1;
+    }else fim = meio - 1;
+
 }
+
+    inicio = 0;
+    fim = tamanho - 1;
+
+
+    while (inicio <= fim){
+        int meio = (inicio+fim)/2;
+        if (alvo == arr[meio]){
+            segundo =  meio;
+            inicio = meio + 1;
+        }else if (arr[meio] < alvo){
+            inicio = meio + 1;
+        }else fim = meio -1;
+    }
+    
+    return std::make_pair(primeiro, segundo);
+
+}
+
 
 TEST_CASE("Encontrar Primeiro e Último Índice - Testes") {
     int arr1[] = {1, 2, 2, 2, 3, 4, 5};
